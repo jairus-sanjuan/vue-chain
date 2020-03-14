@@ -2,13 +2,22 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/participants">Participants</router-link> |
+      <router-link to="/products">Products</router-link> |
+      <router-link to="/product">Product</router-link>
     </div>
-    <router-view />
+    <b-container>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
 <style lang="scss">
+html,
+body {
+  background: #f9f9f9 0% 0% no-repeat padding-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
