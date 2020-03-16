@@ -18,6 +18,11 @@ body {
   background: #f9f9f9 0% 0% no-repeat padding-box;
 }
 
+body,
+#app {
+  min-height: 100vh;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
