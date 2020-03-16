@@ -1,0 +1,87 @@
+import SupplyChain from '../contracts/SupplyChain.json'
+import Web3 from 'web3'
+
+const load_contracts = async () => {
+  let ethereum = window.ethereum
+  const web3 = new Web3(ethereum)
+  const id = await web3.eth.net.getId()
+
+  return new Promise((resolve, reject) => {
+    try {
+      const supply_chain_network = SupplyChain.networks[id]
+      const supply_chain = new web3.eth.Contract(
+        SupplyChain.abi,
+        supply_chain_network.address
+      )
+
+      var arr = {
+        SupplyChain: supply_chain
+      }
+
+      console.log('Contract : ', supply_chain)
+
+      resolve(arr)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+const init_web3 = async () => {
+  let web3 = window.web3
+  let ethereum = window.ethereum
+  async function enable_web3() {
+    await ethereum.enable()
+  }
+  return new Promise((resolve, reject) => {
+    if (typeof web3 !== 'undefined') {
+      web3 = new Web3(web3.currentProvider || 'ws://127.0.0.1:7545')
+    } else {
+      window.alert('Please connect to Metamask.')
+    }
+
+    if (window.ethereum) {
+      const web3 = new Web3(ethereum)
+      try {
+        enable_web3()
+        // const store = configureStore()
+
+        web3.eth.getAccounts(function(error, accounts) {
+          console.log(accounts[0], 'current account on init')
+          // store.dispatch({ type: LOAD_ACCOUNT, payload: accounts[0] })
+        })
+
+        window.ethereum.on('accountsChanged', function() {
+          web3.eth.getAccounts(function(error, accounts) {
+            // store.dispatch({ type: LOAD_ACCOUNT, payload: accounts[0] })
+            if (error) {
+              console.log('Error :', error)
+            }
+
+            console.log('Account changed : ', accounts[0])
+            // window.location.reload(true)
+          })
+        })
+
+        // const contracts = await load_contracts()
+        // store.dispatch({ type: LOAD_CONTRACT, payload: contracts })
+
+        console.log('web3 enabled')
+        resolve(web3)
+      } catch (error) {
+        reject(error)
+      }
+    } else if (window.web3) {
+      const web3 = window.web3
+      console.log('Injected web3 detected.')
+      resolve(web3)
+    } else {
+      const provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545')
+      console.log('No web3 provider available')
+      const web3 = new Web3(provider)
+      resolve(web3)
+    }
+  })
+}
+
+export { init_web3, load_contracts }
