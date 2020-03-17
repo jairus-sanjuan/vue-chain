@@ -1,5 +1,5 @@
 <template>
-  <b-row align-h="center" class="mb-5">
+  <b-row align-h="center">
     <b-col lg="6">
       <h3 class="mb-4">Product Form</h3>
       <b-row>

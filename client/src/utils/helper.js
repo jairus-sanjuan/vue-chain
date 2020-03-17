@@ -1,6 +1,6 @@
 import SupplyChain from '../contracts/SupplyChain.json'
 import Web3 from 'web3'
-
+import store from '../store/index'
 const load_contracts = async () => {
   let ethereum = window.ethereum
   const web3 = new Web3(ethereum)
@@ -15,7 +15,8 @@ const load_contracts = async () => {
       )
 
       var arr = {
-        SupplyChain: supply_chain
+        name: SupplyChain.contractName,
+        contract: supply_chain
       }
 
       console.log('Contract : ', supply_chain)
@@ -33,6 +34,8 @@ const init_web3 = async () => {
   async function enable_web3() {
     await ethereum.enable()
   }
+
+  const contracts = await load_contracts()
   return new Promise((resolve, reject) => {
     if (typeof web3 !== 'undefined') {
       web3 = new Web3(web3.currentProvider || 'ws://127.0.0.1:7545')
@@ -44,16 +47,14 @@ const init_web3 = async () => {
       const web3 = new Web3(ethereum)
       try {
         enable_web3()
-        // const store = configureStore()
 
         web3.eth.getAccounts(function(error, accounts) {
-          console.log(accounts[0], 'current account on init')
-          // store.dispatch({ type: LOAD_ACCOUNT, payload: accounts[0] })
+          store.commit('load_account', accounts[0])
         })
 
         window.ethereum.on('accountsChanged', function() {
           web3.eth.getAccounts(function(error, accounts) {
-            // store.dispatch({ type: LOAD_ACCOUNT, payload: accounts[0] })
+            store.commit('load_account', accounts[0])
             if (error) {
               console.log('Error :', error)
             }
@@ -63,9 +64,7 @@ const init_web3 = async () => {
           })
         })
 
-        // const contracts = await load_contracts()
-        // store.dispatch({ type: LOAD_CONTRACT, payload: contracts })
-
+        store.commit('load_contract', contracts)
         console.log('web3 enabled')
         resolve(web3)
       } catch (error) {
