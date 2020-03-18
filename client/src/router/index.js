@@ -42,10 +42,19 @@ const router = new VueRouter({
 
 // router.beforeEach((to, from, next) => {
 //   const account = store.state.accounts
-//   if (!account) {
-//     next('/')
-//     console.log('Account has not yet been initialized.')
-//   } else next()
+//   if (
+//     to.fullPath === '/participants' ||
+//     to.fullPath === '/products' ||
+//     to.fullPath === '/products/:id' ||
+//     to.fullPath === '/product'
+//   ) {
+//     if (!account) {
+//       next('/')
+//       console.log('Account has not yet been initialized.')
+//     }
+//   }
+
+//   next()
 // })
 
 router.beforeEach((to, from, next) => {
@@ -53,8 +62,8 @@ router.beforeEach((to, from, next) => {
   if (
     to.fullPath === '/participants' ||
     to.fullPath === '/products' ||
-    to.fullPath === '/products/:id' ||
-    to.fullPath === '/product'
+    to.fullPath === '/product' ||
+    to.fullPath === '/products/:id'
   ) {
     if (!account) {
       next('/')
@@ -62,7 +71,9 @@ router.beforeEach((to, from, next) => {
     }
   }
 
-  next()
+  if (account || to.fullPath === '/') {
+    next()
+  }
 })
 
 export default router

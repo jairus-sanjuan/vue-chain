@@ -24,6 +24,7 @@
             <b-form-input
               id="form-group__password"
               v-model="password"
+              type="password"
               trim
             ></b-form-input>
           </b-form-group>
@@ -56,7 +57,7 @@
       </b-row>
       <b-row>
         <b-col lg="4" class="mx-auto"
-          ><b-button variant="primary" @click="submit"
+          ><b-button variant="primary" @click="submit" disabled="disabled"
             >Submit Form</b-button
           ></b-col
         >
@@ -67,10 +68,18 @@
 
 <script>
 import { mapState } from 'vuex'
+// import Web3 from 'web3'
 export default {
   methods: {
-    submit: function() {
-      console.log('Data : ', this._data)
+    submit: async function() {
+      const { username, password, accounts, type } = this
+      await this.contracts.SupplyChain.methods
+        .createParticipant(username, password, accounts, type)
+        .send({ from: accounts }, function(error, result) {
+          if (error) return error
+
+          console.log('Result : ', result)
+        })
     }
   },
   computed: {
@@ -86,13 +95,24 @@ export default {
         { value: 'Manufacturer', text: 'Manufacturer' },
         { value: 'Supplier', text: 'Supplier' },
         { value: 'Consumer', text: 'Consumer' }
-      ]
+      ],
+      disabled: false
     }
   },
-  mounted() {
-    console.log('Data on mount : ', this._data)
-    console.log('Accounts on mount : ', this.accounts)
-    console.log('Contracts on mount : ', this.contracts)
+  async mounted() {
+    // console.log('Data on mount : ', this._data)
+    // console.log('Accounts on mount : ', this.accounts)
+    // console.log('Contracts on mount : ', this.contracts)
+
+    const result = await this.contracts.SupplyChain.methods
+      .participants(0)
+      .call({ from: this.accounts })
+
+    this.username = result.userName
+    this.password = result.password
+    this.type = result.participantType
+
+    if (result) this.disabled = true
   }
 }
 </script>

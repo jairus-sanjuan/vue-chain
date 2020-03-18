@@ -1,23 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Loader v-if="!isFinished" />
+    <div class="p-3" v-else>
+      <img class="mb-3" alt="Vue logo" src="../assets/logo.png" />
+      <h4>Welcome to Supply Chain made with Vue & VueX</h4>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import { init_web3, load_contracts } from '../utils/helper'
+import Loader from '@/components/Loader.vue'
+import { init_web3 } from '../utils/helper'
+import { mapState } from 'vuex'
 // import { mapActions } from 'vuex'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Loader
+  },
+  data() {
+    return {
+      isFinished: false
+    }
+  },
+  computed: {
+    ...mapState(['contracts'])
   },
   mounted() {
-    init_web3()
-    load_contracts()
+    if (this.contracts.SupplyChain) {
+      this.isFinished = !this.isFinished
+    } else {
+      init_web3().then(() => (this.isFinished = !this.isFinished))
+    }
   }
 }
 </script>
