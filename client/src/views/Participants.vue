@@ -1,9 +1,17 @@
 <template>
-  <div><h1>Participants</h1></div>
+  <div>
+    <participant-form />
+  </div>
 </template>
 
 <script>
-export default {}
+import ParticipantForm from '../components/ParticipantForm.vue'
+
+export default {
+  components: {
+    ParticipantForm
+  }
+}
 </script>
 
 <style>

@@ -1,6 +1,7 @@
 import SupplyChain from '../contracts/SupplyChain.json'
 import Web3 from 'web3'
 import store from '../store/index'
+
 const load_contracts = async () => {
   let ethereum = window.ethereum
   const web3 = new Web3(ethereum)

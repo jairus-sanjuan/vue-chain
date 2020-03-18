@@ -4,6 +4,8 @@ import Products from '../views/Products.vue'
 import Product from '../views/Product.vue'
 import Participants from '../views/Participants.vue'
 import Home from '../views/Home.vue'
+import store from '../store/index'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,8 +40,29 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to,from, next))=>{
-//   condition here
-// }
+// router.beforeEach((to, from, next) => {
+//   const account = store.state.accounts
+//   if (!account) {
+//     next('/')
+//     console.log('Account has not yet been initialized.')
+//   } else next()
+// })
+
+router.beforeEach((to, from, next) => {
+  const account = store.state.accounts
+  if (
+    to.fullPath === '/participants' ||
+    to.fullPath === '/products' ||
+    to.fullPath === '/products/:id' ||
+    to.fullPath === '/product'
+  ) {
+    if (!account) {
+      next('/')
+      console.log('Account has not yet been initialized.')
+    }
+  }
+
+  next()
+})
 
 export default router

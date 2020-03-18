@@ -1,0 +1,111 @@
+<template>
+  <b-row align-h="center">
+    <b-col lg="6" class="form">
+      <h3 class="mb-4">Participant Form</h3>
+      <b-row>
+        <b-col lg="6"
+          ><b-form-group
+            id="form-group"
+            label="Username"
+            label-for="form-group__username"
+          >
+            <b-form-input
+              id="form-group__username"
+              v-model="username"
+              trim
+            ></b-form-input> </b-form-group
+        ></b-col>
+        <b-col lg="6">
+          <b-form-group
+            id="form-group"
+            label="Password"
+            label-for="form-group__password"
+          >
+            <b-form-input
+              id="form-group__password"
+              v-model="password"
+              trim
+            ></b-form-input>
+          </b-form-group>
+        </b-col>
+        <b-col lg="12"
+          ><b-form-group
+            id="form-group"
+            label="Participant Type"
+            label-for="form-group__type"
+          >
+            <b-form-select
+              v-model="type"
+              :options="options"
+            ></b-form-select> </b-form-group
+        ></b-col>
+
+        <b-col lg="12"
+          ><b-form-group
+            id="form-group"
+            label="Address"
+            label-for="form-group__address"
+          >
+            <b-form-input
+              id="form-group__address"
+              v-model="accounts"
+              disabled
+              trim
+            ></b-form-input> </b-form-group
+        ></b-col>
+      </b-row>
+      <b-row>
+        <b-col lg="4" class="mx-auto"
+          ><b-button variant="primary" @click="submit"
+            >Submit Form</b-button
+          ></b-col
+        >
+      </b-row>
+    </b-col>
+  </b-row>
+</template>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+  methods: {
+    submit: function() {
+      console.log('Data : ', this._data)
+    }
+  },
+  computed: {
+    ...mapState(['accounts', 'contracts'])
+  },
+  data() {
+    return {
+      username: '',
+      password: '',
+      type: null,
+      options: [
+        { value: null, text: 'Please select an option.' },
+        { value: 'Manufacturer', text: 'Manufacturer' },
+        { value: 'Supplier', text: 'Supplier' },
+        { value: 'Consumer', text: 'Consumer' }
+      ]
+    }
+  },
+  mounted() {
+    console.log('Data on mount : ', this._data)
+    console.log('Accounts on mount : ', this.accounts)
+    console.log('Contracts on mount : ', this.contracts)
+  }
+}
+</script>
+
+<style scoped>
+.form.col-lg-6 {
+  padding: 20px 50px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 7px 23px #88888852;
+  border-radius: 12px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+</style>
