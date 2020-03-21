@@ -1,6 +1,6 @@
 export default {
-  load_contract: (state, { name, contract }) => {
-    state['contracts'][name] = contract
+  load_contract: (state, contract) => {
+    state['contracts'] = contract
     console.log('Contract : ', contract)
   },
   load_account: (state, account) => {

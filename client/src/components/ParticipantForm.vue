@@ -57,7 +57,7 @@
       </b-row>
       <b-row>
         <b-col lg="4" class="mx-auto"
-          ><b-button variant="primary" @click="submit" disabled="disabled"
+          ><b-button variant="primary" @click="submit" :disabled="isDisabled"
             >Submit Form</b-button
           ></b-col
         >
@@ -72,14 +72,28 @@ import { mapState } from 'vuex'
 export default {
   methods: {
     submit: async function() {
-      const { username, password, accounts, type } = this
-      await this.contracts.SupplyChain.methods
-        .createParticipant(username, password, accounts, type)
-        .send({ from: accounts }, function(error, result) {
-          if (error) return error
+      try {
+        const { username, password, accounts, type } = this
+        console.log('Username : ', username)
+        console.log('Password : ', password)
+        console.log('Account Address : ', accounts)
+        console.log('Type : ', type)
+        await this.contracts.ModifiedSupplyChain.methods
+          .createParticipant(username, password, accounts, type)
+          .send({ from: accounts, gas: 2000000 }, function(error, result) {
+            if (error) {
+              console.log('Error : ', error)
+              return
+            }
 
-          console.log('Result : ', result)
-        })
+            console.log('Result : ', result)
+          })
+          .then(res => {
+            console.log('Result : ', res)
+          })
+      } catch (error) {
+        console.log('Catched Error : ', error)
+      }
     }
   },
   computed: {
@@ -96,23 +110,29 @@ export default {
         { value: 'Supplier', text: 'Supplier' },
         { value: 'Consumer', text: 'Consumer' }
       ],
-      disabled: false
+      isDisabled: false
     }
   },
   async mounted() {
     // console.log('Data on mount : ', this._data)
     // console.log('Accounts on mount : ', this.accounts)
     // console.log('Contracts on mount : ', this.contracts)
+    try {
+      const { accounts } = this
+      const result = await this.contracts.ModifiedSupplyChain.methods
+        .participants(accounts)
+        .call({ from: accounts })
 
-    const result = await this.contracts.SupplyChain.methods
-      .participants(0)
-      .call({ from: this.accounts })
+      if (!result) return
 
-    this.username = result.userName
-    this.password = result.password
-    this.type = result.participantType
+      this.username = result.userName || ''
+      this.password = result.password || ''
+      this.type = result.participantType || null
 
-    if (result) this.disabled = true
+      if (result.participantAddress === this.accounts) this.isDisabled = true
+    } catch (error) {
+      console.log('Error :', error)
+    }
   }
 }
 </script>

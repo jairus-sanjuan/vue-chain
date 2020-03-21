@@ -1,4 +1,5 @@
 import SupplyChain from '../contracts/SupplyChain.json'
+import ModifiedSupplyChain from '../contracts/ModifiedSupplyChain.json'
 import Web3 from 'web3'
 import store from '../store/index'
 
@@ -10,17 +11,23 @@ const load_contracts = async () => {
   return new Promise((resolve, reject) => {
     try {
       const supply_chain_network = SupplyChain.networks[id]
+      const modified_supply_chain_network = ModifiedSupplyChain.networks[id]
+
       const supply_chain = new web3.eth.Contract(
         SupplyChain.abi,
         supply_chain_network.address
       )
+      const modified_supply_chain = new web3.eth.Contract(
+        ModifiedSupplyChain.abi,
+        modified_supply_chain_network.address
+      )
 
       var arr = {
-        name: SupplyChain.contractName,
-        contract: supply_chain
+        SupplyChain: supply_chain,
+        ModifiedSupplyChain: modified_supply_chain
       }
 
-      console.log('Contract : ', supply_chain)
+      console.log('Contracts : ', arr)
 
       resolve(arr)
     } catch (error) {

@@ -84,12 +84,19 @@ import { mapState } from 'vuex'
 
 export default {
   methods: {
-    submit: function() {
-      console.log('Data : ', this._data)
+    submit: async function() {
+      const { model, part, serial, cost, accounts } = this
+      await this.contracts.ModifiedSupplyChain.methods
+        .createProduct(model, part, serial, cost)
+        .send({ from: accounts }, function(error, result) {
+          if (error) return error
+
+          console.log('Result : ', result)
+        })
     }
   },
   computed: {
-    ...mapState(['accounts'])
+    ...mapState(['accounts', 'contracts'])
   },
   data() {
     return {

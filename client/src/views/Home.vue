@@ -28,7 +28,7 @@ export default {
     ...mapState(['contracts'])
   },
   mounted() {
-    if (this.contracts.SupplyChain) {
+    if (this.contracts.ModifiedSupplyChain) {
       this.isFinished = !this.isFinished
     } else {
       init_web3().then(() => (this.isFinished = !this.isFinished))
