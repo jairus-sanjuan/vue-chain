@@ -1,4 +1,3 @@
-import SupplyChain from '../contracts/SupplyChain.json'
 import ModifiedSupplyChain from '../contracts/ModifiedSupplyChain.json'
 import SupplyChainLogic from '../contracts/SupplyChainLogic.json'
 import SupplyChainProxy from '../contracts/SupplyChainProxy.json'
@@ -12,13 +11,8 @@ const load_contracts = async () => {
 
   return new Promise((resolve, reject) => {
     try {
-      const supply_chain_network = SupplyChain.networks[id]
       const modified_supply_chain_network = ModifiedSupplyChain.networks[id]
 
-      const supply_chain = new web3.eth.Contract(
-        SupplyChain.abi,
-        supply_chain_network.address
-      )
       const modified_supply_chain = new web3.eth.Contract(
         ModifiedSupplyChain.abi,
         modified_supply_chain_network.address
@@ -37,7 +31,6 @@ const load_contracts = async () => {
       )
 
       var arr = {
-        SupplyChain: supply_chain,
         ModifiedSupplyChain: modified_supply_chain,
         Proxy: proxy,
         Logic: logic
