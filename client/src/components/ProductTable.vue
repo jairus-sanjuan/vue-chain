@@ -70,7 +70,7 @@ export default {
         modelNumber,
         partNumber,
         serialNumber,
-        mfgTimeStamp: formatted_date
+        Date: formatted_date
       })
     }
 

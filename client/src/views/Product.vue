@@ -22,22 +22,26 @@
           ></b-col>
 
           <b-col lg="2"
-            ><b-button block variant="primary">Submit</b-button></b-col
+            ><b-button block variant="primary" @click="submit"
+              >Submit</b-button
+            ></b-col
           >
         </b-row></b-col
       >
     </b-row>
 
-    <b-row align-h="center" class="my-4">
-      <h2 class="product__title">History</h2>
-    </b-row>
+    <product-history :id="Number($route.params.id)" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import ProductHistory from '../components/ProductHistory.vue'
 
 export default {
+  components: {
+    ProductHistory
+  },
   computed: {
     ...mapState(['accounts', 'contracts'])
   },
@@ -78,7 +82,7 @@ export default {
       modelNumber,
       partNumber,
       serialNumber,
-      mfgTimeStamp: formatted_date
+      Date: formatted_date
     })
   },
   data() {
@@ -88,7 +92,17 @@ export default {
     }
   },
   methods: {
-    submit: async function() {}
+    submit: async function() {
+      const { accounts, contracts, address } = this
+
+      let result = await contracts.ModifiedSupplyChain.methods
+        .transferToOwner(accounts, address, this.$route.params.id)
+        .send({ from: accounts, gas: 2000000 })
+
+      if (!result) return new Error('Error : transferToOwner')
+
+      console.log('Result : ', result)
+    }
   }
 }
 </script>

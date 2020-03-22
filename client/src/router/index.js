@@ -63,8 +63,9 @@ const router = new VueRouter({
 //   next()
 // })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const account = store.state.accounts
+
   if (
     to.fullPath === '/participants' ||
     to.fullPath === '/products' ||

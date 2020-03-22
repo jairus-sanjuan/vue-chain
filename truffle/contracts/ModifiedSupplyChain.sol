@@ -74,7 +74,7 @@ contract ModifiedSupplyChain {
             keccak256("Manufacturer")
         ) {
             uint32 productId = product_counter++;
-
+            uint32 registration_id = registration_counter++;
             products[productId].modelNumber = _modelNumber;
             products[productId].partNumber = _partNumber;
             products[productId].serialNumber = _serialNumber;
@@ -82,6 +82,12 @@ contract ModifiedSupplyChain {
             products[productId].productOwner = participants[msg.sender]
                 .participantAddress;
             products[productId].mfgTimeStamp = uint32(now);
+
+            registrations[registration_id].productId = productId;
+            registrations[registration_id].productOwner = msg.sender;
+            registrations[registration_id].ownerAddress = msg.sender;
+            registrations[registration_id].trxTimeStamp = uint32(now);
+            productTrack[productId].push(registration_id);
 
             return productId;
         }
