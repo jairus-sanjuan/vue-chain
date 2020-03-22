@@ -48,13 +48,29 @@ export default {
         serialNumber
       } = product
 
+      const dat = new Date(mfgTimeStamp * 1000)
+
+      let formatted_date =
+        dat.getMonth() +
+        1 +
+        '-' +
+        dat.getDate() +
+        '-' +
+        dat.getFullYear() +
+        ' ' +
+        dat.getHours() +
+        ':' +
+        dat.getMinutes() +
+        ':' +
+        dat.getSeconds()
+
       this.products.push({
         id: i,
         productOwner,
         modelNumber,
         partNumber,
         serialNumber,
-        mfgTimeStamp
+        mfgTimeStamp: formatted_date
       })
     }
 
