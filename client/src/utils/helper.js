@@ -1,5 +1,7 @@
 import SupplyChain from '../contracts/SupplyChain.json'
 import ModifiedSupplyChain from '../contracts/ModifiedSupplyChain.json'
+import SupplyChainLogic from '../contracts/SupplyChainLogic.json'
+import SupplyChainProxy from '../contracts/SupplyChainProxy.json'
 import Web3 from 'web3'
 import store from '../store/index'
 
@@ -22,9 +24,23 @@ const load_contracts = async () => {
         modified_supply_chain_network.address
       )
 
+      const proxy_network = SupplyChainProxy.networks[id]
+      const proxy = new web3.eth.Contract(
+        SupplyChainProxy.abi,
+        proxy_network.address
+      )
+
+      const logic_network = SupplyChainLogic.networks[id]
+      const logic = new web3.eth.Contract(
+        SupplyChainLogic.abi,
+        logic_network.address
+      )
+
       var arr = {
         SupplyChain: supply_chain,
-        ModifiedSupplyChain: modified_supply_chain
+        ModifiedSupplyChain: modified_supply_chain,
+        Proxy: proxy,
+        Logic: logic
       }
 
       console.log('Contracts : ', arr)

@@ -78,8 +78,8 @@ export default {
         console.log('Password : ', password)
         console.log('Account Address : ', accounts)
         console.log('Type : ', type)
-        await this.contracts.ModifiedSupplyChain.methods
-          .createParticipant(username, password, accounts, type)
+        await this.contracts.Logic.methods
+          .invoke_create_participant(username, password, accounts, type)
           .send({ from: accounts, gas: 2000000 }, function(error, result) {
             if (error) {
               console.log('Error : ', error)
@@ -119,10 +119,10 @@ export default {
     // console.log('Contracts on mount : ', this.contracts)
     try {
       const { accounts } = this
-      const result = await this.contracts.ModifiedSupplyChain.methods
+      const result = await this.contracts.Proxy.methods
         .participants(accounts)
         .call({ from: accounts })
-
+      console.log('Participant Result : ', result)
       if (!result) return
 
       this.username = result.userName || ''

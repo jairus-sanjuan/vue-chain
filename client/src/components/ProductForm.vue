@@ -86,8 +86,8 @@ export default {
   methods: {
     submit: async function() {
       const { model, part, serial, cost, accounts } = this
-      await this.contracts.ModifiedSupplyChain.methods
-        .createProduct(model, part, serial, cost)
+      await this.contracts.Logic.methods
+        .invoke_create_product(model, part, serial, cost)
         .send({ from: accounts }, function(error, result) {
           if (error) return error
 

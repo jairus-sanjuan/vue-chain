@@ -48,7 +48,7 @@ export default {
   async mounted() {
     const { accounts, contracts } = this
 
-    let result = await contracts.ModifiedSupplyChain.methods
+    let result = await contracts.Proxy.methods
       .products(this.$route.params.id)
       .call({ from: accounts })
 
@@ -95,8 +95,8 @@ export default {
     submit: async function() {
       const { accounts, contracts, address } = this
 
-      let result = await contracts.ModifiedSupplyChain.methods
-        .transferToOwner(accounts, address, this.$route.params.id)
+      let result = await contracts.Logic.methods
+        .invoke_transfer_to_owner(accounts, address, this.$route.params.id)
         .send({ from: accounts, gas: 2000000 })
 
       if (!result) return new Error('Error : transferToOwner')
