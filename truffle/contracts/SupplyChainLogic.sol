@@ -77,8 +77,7 @@ contract SupplyChainLogic is SupplyChainStorage {
         string memory _modelNumber,
         string memory _partNumber,
         string memory _serialNumber,
-        uint32 _productCost,
-        address _productOwner
+        uint32 _productCost
     ) public returns (bool, bytes memory) {
         bytes memory payload = abi.encodeWithSignature(
             "createProduct(string,string,string,uint32)",

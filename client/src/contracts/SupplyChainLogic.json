@@ -42,7 +42,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -55,7 +56,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -89,7 +91,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -113,7 +116,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -126,7 +130,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -170,7 +175,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -183,7 +189,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -217,7 +224,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -343,7 +351,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -489,7 +498,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -610,7 +620,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -644,7 +655,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"productId\",\"type\":\"uint32\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_uAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_uname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_pass\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_utype\",\"type\":\"string\"}],\"name\":\"authenticateParticipant\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_pass\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_pAdd\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_pType\",\"type\":\"string\"}],\"name\":\"createParticipant\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_modelNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_partNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_serialNumber\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"_productCost\",\"type\":\"uint32\"}],\"name\":\"createProduct\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_p_address\",\"type\":\"address\"}],\"name\":\"getParticipantDetails\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_productId\",\"type\":\"uint32\"}],\"name\":\"getProductDetails\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_prodId\",\"type\":\"uint32\"}],\"name\":\"getProductTrack\",\"outputs\":[{\"internalType\":\"uint32[]\",\"name\":\"\",\"type\":\"uint32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_regId\",\"type\":\"uint32\"}],\"name\":\"getRegistrationDetails\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_pass\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_pAdd\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_pType\",\"type\":\"string\"}],\"name\":\"invoke_create_participant\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_modelNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_partNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_serialNumber\",\"type\":\"string\"},{\"internalType\":\"uint32\",\"name\":\"_productCost\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"_productOwner\",\"type\":\"address\"}],\"name\":\"invoke_create_product\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_p_address\",\"type\":\"address\"}],\"name\":\"invoke_get_participant_details\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_productId\",\"type\":\"uint32\"}],\"name\":\"invoke_get_product_details\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_productId\",\"type\":\"uint32\"}],\"name\":\"invoke_get_product_track\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user1Address\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_user2Address\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"_prodId\",\"type\":\"uint32\"}],\"name\":\"invoke_transfer_to_owner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"participant_counter\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"participants\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"userName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"participantType\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"participantAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"productTrack\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"product_counter\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"name\":\"products\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"modelNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"partNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"serialNumber\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"productOwner\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"cost\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"mfgTimeStamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"registration_counter\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"name\":\"registrations\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"productId\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"ownerAddress\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"trxTimeStamp\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"productOwner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user1Address\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_user2Address\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"_prodId\",\"type\":\"uint32\"}],\"name\":\"transferToOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Laptop001/vue-chain/truffle/contracts/SupplyChainLogic.sol\":\"SupplyChainLogic\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Laptop001/vue-chain/truffle/contracts/SupplyChainLogic.sol\":{\"keccak256\":\"0x353b649a7cd223a0b631c58ab993a51bee7c51dd8356747a6ca06529f7e0cbfe\",\"urls\":[\"bzz-raw://a8ed186bffa4637041ff45119399b607a7a2a0fca97a9645518cd23c3468bb72\",\"dweb:/ipfs/QmT4sYQA7FfD5czxVAzZmW716urHYsPxZNyoHG7TLMPymq\"]},\"/C/Users/Laptop001/vue-chain/truffle/contracts/SupplyChainStorage.sol\":{\"keccak256\":\"0x1978b1c6c3a3009950fda58d7e01ae01ceccd7f32535946faaf86f9ad0282f4f\",\"urls\":[\"bzz-raw://d86fb277cf8569aa8e3d6ef76115ba8c1afccbfe0d35ac22a8b0cb330a87b168\",\"dweb:/ipfs/Qmc9Jwo7ARav9w8hCJtGU2kX94HA48eiZ2diRZjR3E7uqF\"]}},\"version\":1}",
@@ -26013,12 +26025,13 @@
         }
       },
       "links": {},
-      "address": "0xAD445d5cCCE8cAb23BE9F2B1bE6710821F657Fcd",
-      "transactionHash": "0x9c2a9829d623e2b2624494f04b92d7b8a7edd4928bffc45537a0dbaedb16bd3c"
+      "address": "0x26D05a0aA7E4ecBB1e8C847bA639b48802EF958E",
+      "transactionHash": "0x943101d0e54080142548fda8f1381ddc3fc88f3c26485cd8e4ec16e73f512007"
     }
   },
   "schemaVersion": "3.0.22",
-  "updatedAt": "2020-03-22T20:35:40.451Z",
+  "updatedAt": "2020-03-23T02:08:10.347Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

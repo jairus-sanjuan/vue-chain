@@ -35,7 +35,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -48,7 +49,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -82,7 +84,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -106,7 +109,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -119,7 +123,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -163,7 +168,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -176,7 +182,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -210,7 +217,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -242,7 +250,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"productId\",\"type\":\"uint32\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"stateMutability\":\"nonpayable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"getAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_prodId\",\"type\":\"uint32\"}],\"name\":\"getProductTrack\",\"outputs\":[{\"internalType\":\"uint32[]\",\"name\":\"\",\"type\":\"uint32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"participant_counter\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"participants\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"userName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"participantType\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"participantAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"productTrack\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"product_counter\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"name\":\"products\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"modelNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"partNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"serialNumber\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"productOwner\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"cost\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"mfgTimeStamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"registration_counter\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"name\":\"registrations\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"productId\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"ownerAddress\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"trxTimeStamp\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"productOwner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"}],\"name\":\"setLogicContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Laptop001/vue-chain/truffle/contracts/SupplyChainProxy.sol\":\"SupplyChainProxy\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Laptop001/vue-chain/truffle/contracts/SupplyChainProxy.sol\":{\"keccak256\":\"0x2c55ceefb6584541d6deb6a81c8870978a75809535569298a4217a532c2fd3b1\",\"urls\":[\"bzz-raw://e6d28b2f875895c37cd7043774c88a5f9f6afdeec42f44c3e80041a01e8c6e5b\",\"dweb:/ipfs/QmQZrntx8LYJcUh4rv8KeNRm1qp1HBuAtYGhtNWkySiYGJ\"]},\"/C/Users/Laptop001/vue-chain/truffle/contracts/SupplyChainStorage.sol\":{\"keccak256\":\"0x1978b1c6c3a3009950fda58d7e01ae01ceccd7f32535946faaf86f9ad0282f4f\",\"urls\":[\"bzz-raw://d86fb277cf8569aa8e3d6ef76115ba8c1afccbfe0d35ac22a8b0cb330a87b168\",\"dweb:/ipfs/Qmc9Jwo7ARav9w8hCJtGU2kX94HA48eiZ2diRZjR3E7uqF\"]}},\"version\":1}",
@@ -1897,12 +1906,13 @@
         }
       },
       "links": {},
-      "address": "0x818106E49bEA473d8f42dD1231D3152966C492f8",
-      "transactionHash": "0x6d830020c0b1b3e5581deb527a4124b9de029321f07338a865cc217c48f7f14d"
+      "address": "0x024faE4812daD8C9372b1cAaA79fd44D1cf9AA31",
+      "transactionHash": "0x7c97847a3b05ca6ba049a1e26d435c3b7eca3140286832108bcc917442b9d553"
     }
   },
   "schemaVersion": "3.0.22",
-  "updatedAt": "2020-03-22T20:35:40.481Z",
+  "updatedAt": "2020-03-23T02:08:10.324Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

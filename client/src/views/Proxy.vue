@@ -44,13 +44,11 @@ export default {
   methods: {
     submit: async function() {
       const { contracts, accounts } = this
-      await contracts.Proxy.methods
+      let result = await contracts.Proxy.methods
         .setLogicContract(this.address)
-        .send({ from: accounts }, function(error, result) {
-          if (error) return console.log('Error : ', error)
+        .send({ from: accounts })
 
-          console.log('Result :', result)
-        })
+      if (!result) return
     }
   },
   mounted() {
