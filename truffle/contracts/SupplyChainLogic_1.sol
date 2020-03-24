@@ -7,7 +7,7 @@ contract SupplyChainLogic_1 is SupplyChainStorage {
         string memory _pass,
         address _pAdd,
         string memory _pType
-    ) public returns (address) {
+    ) public virtual returns (address) {
         participants[msg.sender].userName = _name;
         participants[msg.sender].password = _pass;
         participants[msg.sender].participantAddress = _pAdd;
