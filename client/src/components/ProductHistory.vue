@@ -26,14 +26,14 @@ export default {
     // console.log('Params : ', this.id)
 
     try {
-      let track = await contracts.ModifiedSupplyChain.methods
+      let track = await contracts.Proxy.methods
         .getProductTrack(this.id)
         .call({ from: accounts })
 
       if (!track) return
 
       track.forEach(async t => {
-        let reg = await contracts.ModifiedSupplyChain.methods
+        let reg = await contracts.Proxy.methods
           .registrations(Number(t))
           .call({ from: accounts })
 

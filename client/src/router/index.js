@@ -5,6 +5,7 @@ import Product from '../views/Product.vue'
 import ProductRegister from '../views/ProductRegister.vue'
 import Participants from '../views/Participants.vue'
 import Home from '../views/Home.vue'
+import Proxy from '../views/Proxy.vue'
 import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -37,6 +38,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: Participants
+  },
+  {
+    path: '/proxy',
+    name: 'Proxy',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: Proxy
   }
 ]
 

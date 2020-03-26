@@ -78,7 +78,8 @@ export default {
         console.log('Password : ', password)
         console.log('Account Address : ', accounts)
         console.log('Type : ', type)
-        await this.contracts.ModifiedSupplyChain.methods
+
+        await this.contracts.Implementation.methods
           .createParticipant(username, password, accounts, type)
           .send({ from: accounts, gas: 2000000 }, function(error, result) {
             if (error) {
@@ -87,9 +88,6 @@ export default {
             }
 
             console.log('Result : ', result)
-          })
-          .then(res => {
-            console.log('Result : ', res)
           })
       } catch (error) {
         console.log('Catched Error : ', error)
@@ -118,18 +116,20 @@ export default {
     // console.log('Accounts on mount : ', this.accounts)
     // console.log('Contracts on mount : ', this.contracts)
     try {
-      const { accounts } = this
-      const result = await this.contracts.ModifiedSupplyChain.methods
-        .participants(accounts)
+      const { accounts, contracts } = this
+
+      const result = await contracts.Implementation.methods
+        .getParticipantDetails(accounts)
         .call({ from: accounts })
 
+      console.log('Participant : ', result)
       if (!result) return
 
       this.username = result.userName || ''
       this.password = result.password || ''
       this.type = result.participantType || null
 
-      if (result.participantAddress === this.accounts) this.isDisabled = true
+      // if (result.participantAddress === this.accounts) this.isDisabled = true
     } catch (error) {
       console.log('Error :', error)
     }

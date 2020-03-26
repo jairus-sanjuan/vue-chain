@@ -1,5 +1,7 @@
-import SupplyChain from '../contracts/SupplyChain.json'
 import ModifiedSupplyChain from '../contracts/ModifiedSupplyChain.json'
+import SupplyChainLogic_1 from '../contracts/SupplyChainLogic_1.json'
+import SupplyChainLogic_3 from '../contracts/SupplyChainLogic_3.json'
+import SupplyChainProxy from '../contracts/SupplyChainProxy.json'
 import Web3 from 'web3'
 import store from '../store/index'
 
@@ -7,24 +9,36 @@ const load_contracts = async () => {
   let ethereum = window.ethereum
   const web3 = new Web3(ethereum)
   const id = await web3.eth.net.getId()
+  const proxy_network = SupplyChainProxy.networks[id]
+  const logic_contract = new web3.eth.Contract(
+    SupplyChainLogic_3.abi,
+    proxy_network.address
+  )
 
   return new Promise((resolve, reject) => {
     try {
-      const supply_chain_network = SupplyChain.networks[id]
       const modified_supply_chain_network = ModifiedSupplyChain.networks[id]
-
-      const supply_chain = new web3.eth.Contract(
-        SupplyChain.abi,
-        supply_chain_network.address
-      )
       const modified_supply_chain = new web3.eth.Contract(
         ModifiedSupplyChain.abi,
         modified_supply_chain_network.address
       )
 
+      const logic_network = SupplyChainLogic_1.networks[id]
+      const logic = new web3.eth.Contract(
+        SupplyChainLogic_1.abi,
+        logic_network.address
+      )
+
+      const proxy = new web3.eth.Contract(
+        SupplyChainProxy.abi,
+        proxy_network.address
+      )
+
       var arr = {
-        SupplyChain: supply_chain,
-        ModifiedSupplyChain: modified_supply_chain
+        ModifiedSupplyChain: modified_supply_chain,
+        Logic: logic,
+        Proxy: proxy,
+        Implementation: logic_contract
       }
 
       console.log('Contracts : ', arr)

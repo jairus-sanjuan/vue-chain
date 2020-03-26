@@ -48,7 +48,7 @@ export default {
   async mounted() {
     const { accounts, contracts } = this
 
-    let result = await contracts.ModifiedSupplyChain.methods
+    let result = await contracts.Proxy.methods
       .products(this.$route.params.id)
       .call({ from: accounts })
 
@@ -95,7 +95,7 @@ export default {
     submit: async function() {
       const { accounts, contracts, address } = this
 
-      let result = await contracts.ModifiedSupplyChain.methods
+      let result = await contracts.Implementation.methods
         .transferToOwner(accounts, address, this.$route.params.id)
         .send({ from: accounts, gas: 2000000 })
 

@@ -27,14 +27,14 @@ export default {
   },
   async mounted() {
     const { accounts, contracts } = this
-    let count = await contracts.ModifiedSupplyChain.methods
+    let count = await contracts.Proxy.methods
       .product_counter()
       .call({ from: accounts })
 
     if (!count) return
 
     for (var i = 0; i < count; i++) {
-      var product = await contracts.ModifiedSupplyChain.methods
+      var product = await contracts.Proxy.methods
         .products(i)
         .call({ from: accounts })
 

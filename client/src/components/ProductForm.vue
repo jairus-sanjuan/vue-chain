@@ -85,8 +85,8 @@ import { mapState } from 'vuex'
 export default {
   methods: {
     submit: async function() {
-      const { model, part, serial, cost, accounts } = this
-      await this.contracts.ModifiedSupplyChain.methods
+      const { model, part, serial, cost, accounts, contracts } = this
+      await contracts.Implementation.methods
         .createProduct(model, part, serial, cost)
         .send({ from: accounts }, function(error, result) {
           if (error) return error

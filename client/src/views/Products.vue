@@ -16,7 +16,7 @@ export default {
   methods: {},
   async mounted() {
     const { accounts, contracts } = this
-    await contracts.ModifiedSupplyChain.methods
+    await contracts.Proxy.methods
       .product_counter()
       .call({ from: accounts }, function(error, result) {
         if (error) return error

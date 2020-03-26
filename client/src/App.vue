@@ -9,6 +9,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
+            <b-nav-item to="/proxy">Configure Smart Contracts</b-nav-item>
             <b-nav-item to="/participants">Register Participants</b-nav-item>
             <b-nav-item to="/products/register">Register Product</b-nav-item>
             <b-nav-item to="/products">View Products</b-nav-item>
