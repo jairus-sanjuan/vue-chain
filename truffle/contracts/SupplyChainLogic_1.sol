@@ -1,15 +1,16 @@
 pragma solidity ^0.6.1;
 import "./SupplyChainStorage.sol";
 
+
 contract SupplyChainLogic_1 is SupplyChainStorage {
     function createParticipant(
         string memory _name,
-        string memory _pass,
+        string memory _location,
         address _pAdd,
         string memory _pType
     ) public virtual returns (address) {
-        participants[msg.sender].userName = _name;
-        participants[msg.sender].password = _pass;
+        participants[msg.sender].name = _name;
+        participants[msg.sender].location = _location;
         participants[msg.sender].participantAddress = _pAdd;
         participants[msg.sender].participantType = _pType;
         participant_counter++;
@@ -22,7 +23,7 @@ contract SupplyChainLogic_1 is SupplyChainStorage {
         returns (string memory, address, string memory)
     {
         return (
-            participants[_p_address].userName,
+            participants[_p_address].name,
             participants[_p_address].participantAddress,
             participants[_p_address].participantType
         );
@@ -37,8 +38,7 @@ contract SupplyChainLogic_1 is SupplyChainStorage {
         if (
             keccak256(
                 abi.encodePacked(participants[msg.sender].participantType)
-            ) ==
-            keccak256("Manufacturer")
+            ) == keccak256("Manufacturer")
         ) {
             uint32 productId = product_counter++;
             uint32 registration_id = registration_counter++;
@@ -156,34 +156,5 @@ contract SupplyChainLogic_1 is SupplyChainStorage {
         registration memory r = registrations[_regId];
 
         return (r.productId, r.ownerAddress, r.productOwner, r.trxTimeStamp);
-    }
-
-    function authenticateParticipant(
-        address _uAddress,
-        string memory _uname,
-        string memory _pass,
-        string memory _utype
-    ) public view returns (bool) {
-        if (
-            keccak256(
-                abi.encodePacked(participants[_uAddress].participantType)
-            ) ==
-            keccak256(abi.encodePacked(_utype))
-        ) {
-            if (
-                keccak256(abi.encodePacked(participants[_uAddress].userName)) ==
-                keccak256(abi.encodePacked(_uname))
-            ) {
-                if (
-                    keccak256(
-                        abi.encodePacked(participants[_uAddress].password)
-                    ) ==
-                    keccak256(abi.encodePacked(_pass))
-                ) {
-                    return (true);
-                }
-            }
-        }
-        return (false);
     }
 }

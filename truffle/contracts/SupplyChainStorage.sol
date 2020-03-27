@@ -1,5 +1,6 @@
 pragma solidity ^0.6.1;
 
+
 contract SupplyChainStorage {
     address owner;
     uint32 public part_counter = 0;
@@ -17,6 +18,7 @@ contract SupplyChainStorage {
         uint32 cost;
         uint32 mfgTimeStamp;
         int32 productId;
+        bool used;
     }
 
     mapping(uint32 => part) public parts;
@@ -28,15 +30,15 @@ contract SupplyChainStorage {
         address productOwner;
         uint32 cost;
         uint32 mfgTimeStamp;
-        uint256[] parts;
+        uint32[] parts;
     }
 
     mapping(uint32 => product) public products;
 
     struct participant {
-        string userName;
-        string password;
         string participantType;
+        string name;
+        string location;
         address participantAddress;
         uint256[] parts;
     }

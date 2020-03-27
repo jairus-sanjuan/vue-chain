@@ -1,14 +1,16 @@
 pragma solidity ^0.6.1;
 import "./SupplyChainStorage.sol";
+
+
 contract SupplyChainProxy is SupplyChainStorage {
     address target;
-    
-    function setLogicContract(address _target) public onlyOwner returns(address) {
+
+    function setLogicContract(address _target) public returns (address) {
         target = _target;
-        
-        return(target);
+
+        return (target);
     }
-    
+
     fallback() external {
         // bytes memory data = msg.data;
         address impl = target;
@@ -27,12 +29,20 @@ contract SupplyChainProxy is SupplyChainStorage {
 
             // Check what the result is, return and revert accordingly
             switch res
-            case 0 { revert(ptr, size) }
-            default { return(ptr, size) }
+                case 0 {
+                    revert(ptr, size)
+                }
+                default {
+                    return(ptr, size)
+                }
         }
     }
-    
-    function getAddress()public view returns(address){
+
+    function getProxy() public view returns (address) {
+        return target;
+    }
+
+    function getAddress() public view returns (address) {
         return address(this);
     }
 }

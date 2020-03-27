@@ -1,15 +1,16 @@
 pragma solidity ^0.6.1;
 import "./SupplyChainStorage.sol";
 
+
 contract SupplyChainLogic_3 is SupplyChainStorage {
     function createParticipant(
         string memory _name,
-        string memory _pass,
+        string memory _location,
         address _pAdd,
         string memory _pType
     ) public virtual returns (address) {
-        participants[msg.sender].userName = _name;
-        participants[msg.sender].password = _pass;
+        participants[msg.sender].name = _name;
+        participants[msg.sender].location = _location;
         participants[msg.sender].participantAddress = _pAdd;
         participants[msg.sender].participantType = _pType;
         participant_counter++;
@@ -19,14 +20,29 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
     function getParticipantDetails(address _p_address)
         public
         view
-        returns (string memory, address, string memory, uint256[] memory)
+        returns (
+            address,
+            string memory,
+            string memory,
+            string memory,
+            uint256[] memory
+        )
     {
         return (
-            participants[_p_address].userName,
             participants[_p_address].participantAddress,
             participants[_p_address].participantType,
+            participants[_p_address].name,
+            participants[_p_address].location,
             participants[_p_address].parts
         );
+    }
+
+    function getParticipantParts(address _p_address)
+        public
+        view
+        returns (uint256[] memory)
+    {
+        return (participants[_p_address].parts);
     }
 
     function createPart(
@@ -37,8 +53,7 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
         if (
             keccak256(
                 abi.encodePacked(participants[msg.sender].participantType)
-            ) ==
-            keccak256("Manufacturer")
+            ) == keccak256("Manufacturer")
         ) {
             uint32 partId = part_counter++;
 
@@ -47,6 +62,7 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
             parts[partId].cost = _productCost;
             parts[partId].mfgTimeStamp = uint32(now);
             parts[partId].productId = -1;
+            parts[partId].used = false;
             participants[msg.sender].parts.push(partId);
 
             return partId;
@@ -58,14 +74,15 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
     function getPartDetails(uint32 _partId)
         public
         view
-        returns (string memory, string memory, uint32, uint32, int32)
+        returns (string memory, string memory, uint32, uint32, int32, bool)
     {
         return (
             parts[_partId].partNumber,
             parts[_partId].serialNumber,
             parts[_partId].cost,
             parts[_partId].mfgTimeStamp,
-            parts[_partId].productId
+            parts[_partId].productId,
+            parts[_partId].used
         );
     }
 
@@ -79,8 +96,7 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
         if (
             keccak256(
                 abi.encodePacked(participants[msg.sender].participantType)
-            ) ==
-            keccak256("Manufacturer")
+            ) == keccak256("Manufacturer")
         ) {
             uint32 productId = product_counter++;
             uint32 registration_id = registration_counter++;
@@ -97,6 +113,7 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
             for (uint32 i = 0; i < _parts.length; i++) {
                 uint32 _id = _parts[i];
                 parts[_id].productId = int32(productId);
+                parts[_id].used = true;
             }
 
             registrations[registration_id].productId = productId;
@@ -126,7 +143,7 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
             uint32,
             address,
             uint32,
-            uint256[] memory
+            uint32[] memory
         )
     {
         return (
@@ -207,34 +224,5 @@ contract SupplyChainLogic_3 is SupplyChainStorage {
         registration memory r = registrations[_regId];
 
         return (r.productId, r.ownerAddress, r.productOwner, r.trxTimeStamp);
-    }
-
-    function authenticateParticipant(
-        address _uAddress,
-        string memory _uname,
-        string memory _pass,
-        string memory _utype
-    ) public view returns (bool) {
-        if (
-            keccak256(
-                abi.encodePacked(participants[_uAddress].participantType)
-            ) ==
-            keccak256(abi.encodePacked(_utype))
-        ) {
-            if (
-                keccak256(abi.encodePacked(participants[_uAddress].userName)) ==
-                keccak256(abi.encodePacked(_uname))
-            ) {
-                if (
-                    keccak256(
-                        abi.encodePacked(participants[_uAddress].password)
-                    ) ==
-                    keccak256(abi.encodePacked(_pass))
-                ) {
-                    return (true);
-                }
-            }
-        }
-        return (false);
     }
 }
